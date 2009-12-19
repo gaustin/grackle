@@ -98,7 +98,7 @@ module Grackle
           if value.respond_to? :httpdate
             value = value.httpdate
           end
-          h[key] = value
+          h[key.to_s] = value
           h
         end
       end
@@ -127,7 +127,7 @@ module Grackle
     
       def add_form_data(req,params)
         if req.request_body_permitted? && params
-          req.set_form_data(params)
+          req.set_form_data(stringify_params(params))
         end
       end
     
